@@ -14,11 +14,13 @@ class ProjectSeeder extends Seeder
      */
     public function run(): void
     {
+        Project::truncate();
+        
         for($i = 0; $i < 10; $i++) {
             Project::create([
                 'title' => fake()->sentence(),
-                'description'=> fake()->sentence(),
-                'src'=> fake()->url(),
+                'description'=> fake()->paragraph(),
+                'src'=> fake()->imageUrl(),
                 'visible'=> fake()->boolean(70),
             ]);
         }
