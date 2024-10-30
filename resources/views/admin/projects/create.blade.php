@@ -32,7 +32,10 @@
     </div>
     
     <div class="mb-3 form-check">
-        <input type="checkbox" class="form-check-input" id="visible" name="visible">
+        <input type="checkbox" class="form-check-input" id="visible" name="visible" value="0"       
+        @if (old('published') !== null)
+            checked
+        @endif>
         <label class="form-check-label" for="visible">Pubblicato</label>
     </div>
         

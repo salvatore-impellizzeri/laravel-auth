@@ -33,7 +33,7 @@
     </div>
     
     <div class="mb-3 form-check">
-        <input type="checkbox" class="form-check-input" id="visible" name="visible" @if(old('visible', $project->visible)) checked @endif>
+        <input type="checkbox" class="form-check-input" id="visible" name="visible" value="1" {{ old('visible', $project->visible) ? 'checked' : '' }}>
         <label class="form-check-label" for="visible">Pubblicato</label>
     </div>
         

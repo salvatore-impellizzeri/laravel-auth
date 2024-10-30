@@ -36,17 +36,17 @@ class ProjectController extends Controller
             "title"=> "required|max:250",
             "description"=> "required|min:20|max:1000",
             "src"=> "nullable|max:2000|url",
-            "visible"=> "nullable",
+            "visible"=> "nullable|in:1,0,true,false",
         ]);
 
         $project = new Project();
         $project->title = $data["title"];
         $project->description = $data["description"];
         $project->src = $data["src"];
-        $project->visible = $data["visible"];
+        $project->visible = $request->input('visible') == '1';
         $project->save();
 
-        return view ('admin.projects.show');
+        return view ('admin.projects.show', compact("project"));
     }
 
     /**
@@ -76,18 +76,18 @@ class ProjectController extends Controller
             "title"=> "required|max:250",
             "description"=> "required|min:20|max:1000",
             "src"=> "nullable|max:2000|url",
-            "visible"=> "nullable",
+            "visible"=> "nullable|in:1,0,true,false",
         ]);
 
         $project->title = $data["title"];
         $project->description = $data["description"];
         $project->src = $data["src"];
-        $data['visible'] = isset($data['visible']);
+        $project->visible = $request->input('visible') == '1';
 
-        $project->update($data);
+        $project->update();
 
 
-        return redirect()->route('admin.projects.show', ['project' => $project->id]);
+        return redirect()->route('admin.projects.show', compact('project'));
     }
 
     /**
